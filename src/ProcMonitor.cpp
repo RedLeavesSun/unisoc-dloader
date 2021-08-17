@@ -62,16 +62,16 @@ int CProcMonitor::OnMessage(UINT msgID,UINT wParam, void* lParam)
         SetStatus( wParam, DL_ERASE_FLASH,FALSE,0,0);
         break;
     case BM_DOWNLOAD:
-        SetStatus( wParam, DL_DL_STAGE,TRUE,0,(DWORD)lParam);
+        SetStatus( wParam, DL_DL_STAGE,TRUE,0,(intptr_t)lParam);
         break;
     case BM_DOWNLOAD_PROCESS:
-        SetProgPos(wParam,(DWORD)lParam);
+        SetProgPos(wParam,(intptr_t)lParam);
         break;
     case BM_READ_FLASH:
-        SetStatus( wParam, DL_READ_STAGE,TRUE,0,(DWORD)lParam);
+        SetStatus( wParam, DL_READ_STAGE,TRUE,0,(intptr_t)lParam);
         break;
     case BM_READ_FLASH_PROCESS:
-        SetProgPos( wParam, (DWORD)lParam );
+        SetProgPos( wParam, (intptr_t)lParam );
         break;
     case BM_RESET:
         SetStatus( wParam, DL_RESET_STAGE,FALSE,0,0);

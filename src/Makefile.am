@@ -1,7 +1,7 @@
 bin_PROGRAMS = dloader
 confdir = $(sysconfdir)/dloader
-AM_CPPFLAGS=-I$(top_srcdir)/include -m32 -DSYSCONFDIR='"${confdir}"'
-AM_LDFLAGS=-m32 -static
+AM_CPPFLAGS=-I$(top_srcdir)/include -m64 -DSYSCONFDIR='"${confdir}"'
+AM_LDFLAGS=-m64 -static
 dloader_SOURCES = \
 		XmlConfigParse.cpp \
 		typedef.cpp \
