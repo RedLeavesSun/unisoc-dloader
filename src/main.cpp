@@ -454,9 +454,6 @@ BOOL IsAvailableDev(char* szDevPath)
 	BOOL bAvailable = FALSE;
 	int fd = -1;
 	//printf("Check IsAvailableDev:%s\n",szDevPath);
-	char szChmod[MAX_PATH] = {0};
-	sprintf(szChmod,_T("chmod 777 %s"),szDevPath);
-	system(szChmod);
 	fd = open(szDevPath,O_RDWR|O_NOCTTY);
 	
 	int nRet = -1;
