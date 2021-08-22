@@ -454,6 +454,21 @@ bool CTTYComm2::SetTTYAtt(int fd, uint32_t baud)
         baudrate=B921600;
 	 m_nBandRate = 921600;
         break;
+
+    case 1000000:
+        baudrate=B1000000;
+        m_nBandRate = 1000000;
+        break;
+
+    case 2000000:
+        baudrate=B2000000;
+        m_nBandRate = 2000000;
+        break;
+
+    case 4000000:
+        baudrate=B4000000;
+        m_nBandRate = 4000000;
+        break;
     default:
 	 m_nBandRate = 115200;
         baudrate=B115200;
@@ -619,6 +634,15 @@ bool CTTYComm2::SetTTYBaudrate(uint32_t baud)
         break;
     case 921600:
         baudrate=B921600;
+        break;
+    case 1000000:
+        baudrate=B1000000;
+        break;
+    case 2000000:
+        baudrate=B2000000;
+        break;
+    case 4000000:
+        baudrate=B4000000;
         break;
     default:
         baudrate=B115200;

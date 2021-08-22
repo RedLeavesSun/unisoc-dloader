@@ -286,6 +286,9 @@ BOOL CBootModeOpr::ChangeBaud( DWORD dwTimeout /* = 1000  */ )
     case 230400:
     case 460800:
     case 921600:
+    case 1000000:
+    case 2000000:
+    case 4000000:
         break;
     default:
         m_dwBaud=115200;

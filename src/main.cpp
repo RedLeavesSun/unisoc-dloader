@@ -254,14 +254,15 @@ int main(int argc, char *argv[])
 		}
 		else if(_tcsicmp(argv[i],_T("-storage-type")) == 0)
 		{
-			if((i+1) < argc && _tcsicmp(argv[++i],_T("emmc")) == 0)
+			if((i+1) < argc && _tcsicmp(argv[i + 1],_T("emmc")) == 0)
 			{
 				nStorageType = 1;
 			}
-			if((i+1) < argc && _tcsicmp(argv[++i],_T("ufs")) == 0)
+			if((i+1) < argc && _tcsicmp(argv[i + 1],_T("ufs")) == 0)
 			{
 				nStorageType = 2;
 			}
+			i++;
 		}
 		else
 		{
