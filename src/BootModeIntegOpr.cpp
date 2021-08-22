@@ -1127,6 +1127,16 @@ BOOL CBootModeIntegOpr::_Download(void * pFileInfo,BOOL bByID, BOOL bIs64Bit/* =
 	*/
 
     BMFileInfo* pBMFileInfo = (BMFileInfo*)pFileInfo;
+    if (ohObject.GetStorageType() == 1) {
+        if (strstr(pBMFileInfo->szFileName, "ufs")) {
+            return TRUE;
+        }
+    }
+    if (ohObject.GetStorageType() == 2) {
+        if (strstr(pBMFileInfo->szFileName, "emmc")) {
+            return TRUE;
+        }
+    }
     DWORD dwTimeout = ohObject.GetTimeout( _T("Erase Flash") );
     if( dwTimeout <= MAX_ERASEFLASH_TIMEOUT )
     {

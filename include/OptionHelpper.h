@@ -27,6 +27,7 @@ class COptionHelpper
 	  virtual ~ COptionHelpper ();
 
 	public:
+	  void SetStorageType(int nStorageType);
 	  void SetCheckBaudTimes (int nTimes);
 	  void SetRepartitionFlag (int nFlag);
 	  void SetReadFlashBefRepFlag (int nFlag);
@@ -36,6 +37,7 @@ class COptionHelpper
 			    void *pvarValue);
 
 	public:
+	  int GetStorageType();
 	  int GetCheckBaudTimes (const _TCHAR * lpszFileType);
 	  int GetTimeout (const _TCHAR * lpszOperation);
 	  int GetPacketLength (const _TCHAR * lpszFileType);
@@ -67,6 +69,7 @@ class COptionHelpper
 	  INI_CONFIG *m_iniBMTimeout;
 	  BOOL m_bEnableSecondEnum;
 	  BOOL m_bPowerOff;
+	  int m_nStorageType;
 };
 
 #endif // !defined(AFX_OPTIONHELPPER_H__CBDB797D_51F4_445D_AF7B_6DFD23D35CB4__INCLUDED_)

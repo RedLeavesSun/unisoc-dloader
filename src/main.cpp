@@ -23,7 +23,11 @@
 #define _T(x)     x
 #define _tprintf   printf
 
+#include "OptionHelpper.h"
+
 //-pac "/mnt/hgfs/ubuntu-share/Linux/pac/sp6821a_gonk4.0_user.pac" -dev "/dev/ttyUSB0" -baud 460800 -reset -nvbk false
+
+extern COptionHelpper ohObject;
 
 using namespace std;
 
@@ -60,19 +64,21 @@ void WaitExit(void * param)
 
 void ShowUsage()
 {
-    	printf("\nusage: sudo ./DLoader <command> [ <option> ]; e.g.  sudo ./DLoader -pac ./test.pac\n\n");
+	printf("\nusage: sudo ./DLoader <command> [ <option> ]; e.g.  sudo ./DLoader -pac ./test.pac\n\n");
 	printf("commands and option:\n");
-	printf("-pac <pac-path>			*download pac file\n");
-	printf("[-dev <dev-path>]		download port,default auto find the available device. e.g. /dev/ttyUSB0\n");
-	printf("[-baud <baud-rate>]            	set baud-rate,invalid for usb downlad\n");
-	printf("[-nvbk false|true]		backup nv option,default backup nv\n");
-	printf("[-filebk false|true]		backup need backup partition\n");
-	printf("[-phasecheck]			flash phasecheck,default randomly generated SN\n");
-	printf("[-SN sn]			set a sn\n");
-	printf("[-KeepCharge] 	              	support usb power supply\n");	
-	printf("[-PowerOff]			power off device after download\n");
-	printf("[-reset]			reset device to normal after download\n");
-	printf("[-auto]		             	auto download mode\n\n");
+	printf("-pac <pac-path>                 download pac file\n");
+	printf("[-dev <dev-path>]               download port, default auto find the available device. e.g. /dev/ttyUSB0\n");
+	printf("[-baud <baud-rate>]             set baud-rate, invalid for usb downlad\n");
+	printf("[-nvbk false|true]              backup nv option, default backup nv\n");
+	printf("[-filebk false|true]            backup need backup partition\n");
+	printf("[-phasecheck]                   flash phasecheck, default randomly generated SN\n");
+	printf("[-SN sn]                        set a sn\n");
+	printf("[-KeepCharge]                   support usb power supply\n");
+	printf("[-PowerOff]                     power off device after download\n");
+	printf("[-reset]                        reset device to normal after download\n");
+	printf("[-auto]                         auto download mode\n");
+	printf("[-storage-type emmc|ufs]        set storage type, default is emmc\n");
+	printf("\n");
 }
 
 static int nPortCookie = 0;
@@ -136,6 +142,7 @@ int main(int argc, char *argv[])
 	BOOL bBackupFile 		= TRUE;
 	bool bManualDl 			= true;
 	BOOL bPhaseCheck 		= FALSE;
+	int  nStorageType		= 1;
 	char   szSN[X_SN_LEN+1] 	= {0};
 	int i = 0;
 	std::map<std::string,std::string> mapReplaceDLFiles;
@@ -245,6 +252,17 @@ int main(int argc, char *argv[])
 				return 1;
 			}
 		}
+		else if(_tcsicmp(argv[i],_T("-storage-type")) == 0)
+		{
+			if((i+1) < argc && _tcsicmp(argv[++i],_T("emmc")) == 0)
+			{
+				nStorageType = 1;
+			}
+			if((i+1) < argc && _tcsicmp(argv[++i],_T("ufs")) == 0)
+			{
+				nStorageType = 2;
+			}
+		}
 		else
 		{
 			TCHAR* pszPara = argv[i];
@@ -289,6 +307,8 @@ int main(int argc, char *argv[])
 	dl.m_Settings.SetFileBkFlag(bBackupFile);
 	dl.m_Settings.SetPhaseCheckFlag(bPhaseCheck);
 	dl.SetSNString(szSN);
+
+	ohObject.SetStorageType(nStorageType);
 	//char c;
 	printf("Init Downloading...\n");
 

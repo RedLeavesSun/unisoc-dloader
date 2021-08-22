@@ -46,6 +46,11 @@ COptionHelpper::~COptionHelpper()
     ini_config_destroy(m_iniBMTimeout);
 }
 
+int COptionHelpper::GetStorageType()
+{
+    return m_nStorageType;
+}
+
 int COptionHelpper::GetCheckBaudTimes( const _TCHAR* lpszFileType )
 {
     if( INVALID_OPTION_VALUE != m_nCheckBaudTimes )
@@ -145,6 +150,11 @@ BOOL COptionHelpper::GetFileOperations( const _TCHAR* lpszFileType,
     }
 
     return agOperations.size();
+}
+
+void COptionHelpper::SetStorageType(int nStorageType)
+{
+    m_nStorageType = nStorageType;
 }
 
 void COptionHelpper::SetCheckBaudTimes( int nTimes )
