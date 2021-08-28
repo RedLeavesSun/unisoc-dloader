@@ -70,6 +70,7 @@ void ShowUsage()
 	printf("\n");
 	printf("command and option:\n");
 	printf("[-pac <pac-path>]               download pac file\n");
+	printf("[-unpac <unpac-path>]           download unpac files\n");
 	printf("[-dev <dev-path>]               download port, default auto find the available device. e.g. /dev/ttyUSB0\n");
 	printf("[-baud <baud-rate>]             set baud-rate, invalid for usb downlad\n");
 	printf("[-nvbk false|true]              backup nv option, default backup nv\n");

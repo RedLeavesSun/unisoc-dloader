@@ -181,8 +181,7 @@ BOOL CBinPack::Unpacket(LPCTSTR lpszFileName,
 	char strReleaseDir[MAX_PATH] = {0};
 	if(lpszReleaseDirPath != NULL)
 	{
-		sprintf(strReleaseDir,_T("%s/_DownloadFiles%d"),
-               lpszReleaseDirPath,GetCycleCount());
+		sprintf(strReleaseDir,_T("%s"), lpszReleaseDirPath);
 	}
 	else
 	{
@@ -196,8 +195,7 @@ BOOL CBinPack::Unpacket(LPCTSTR lpszFileName,
 		}
 		*/
 
-		sprintf(strReleaseDir,_T("/tmp/_DownloadFiles%d"),
-                GetCycleCount());
+		sprintf(strReleaseDir,_T("/tmp/DownloadFiles"));
     }
     m_strReleaseDir = strReleaseDir;
 
