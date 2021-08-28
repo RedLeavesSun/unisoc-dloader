@@ -242,7 +242,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 confdir = $(sysconfdir)/dloader
-conf_DATA = BMFileType.ini BMTimeout.ini
+conf_DATA = BMFileType.ini BMTimeout.ini BMError.ini Channel.ini DLoader.ini PhaseCheck.ini
 all: all-am
 
 .SUFFIXES:
