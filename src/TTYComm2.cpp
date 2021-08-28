@@ -411,6 +411,7 @@ bool CTTYComm2::LoadConfig()
     GetExePath helper;
     std::string strIniPath = helper.getExeDir();
     strIniPath.insert(0,"/");
+    strIniPath = SYSCONFDIR "/";
     strIniPath += "Channel.ini";
 
     config = ini_config_create_from_file(strIniPath.c_str(),0);
