@@ -64,9 +64,12 @@ void WaitExit(void * param)
 
 void ShowUsage()
 {
-	printf("\nusage: sudo ./DLoader <command> [ <option> ]; e.g.  sudo ./DLoader -pac ./test.pac\n\n");
-	printf("commands and option:\n");
-	printf("-pac <pac-path>                 download pac file\n");
+	printf("usage: dloader <command> [<option>]\n");
+	printf("\n");
+	printf("e.g. dloader -pac demo.pac\n");
+	printf("\n");
+	printf("command and option:\n");
+	printf("[-pac <pac-path>]               download pac file\n");
 	printf("[-dev <dev-path>]               download port, default auto find the available device. e.g. /dev/ttyUSB0\n");
 	printf("[-baud <baud-rate>]             set baud-rate, invalid for usb downlad\n");
 	printf("[-nvbk false|true]              backup nv option, default backup nv\n");
