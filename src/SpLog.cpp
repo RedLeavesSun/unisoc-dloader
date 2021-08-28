@@ -364,9 +364,18 @@ bool CSpLog::LogString(const char* str)
     char szLogBuffer[MAX_STRING_IN_BYTES+LOCALTIME_STRING_MAX_LEN] = {0};
 
     // Log local time as "[2009-05-25 12:30:52:0136]...
+#ifdef __WIN32__
     snprintf(szLogBuffer, sizeof(szLogBuffer)-1, "%s %s\r\n", GetLocalTime(), str);
+#else
+    snprintf(szLogBuffer, sizeof(szLogBuffer)-1, "%s %s\n", GetLocalTime(), str);
+#endif
 
     uint32_t nLen = strlen(szLogBuffer);
+
+    if (m_uLogLevel < SPLOGLV_SPLIT) {
+        printf(szLogBuffer);
+        return true;
+    }
 
     if( fwrite(szLogBuffer,1,nLen,m_pTxtFile) == nLen)
     {

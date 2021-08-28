@@ -414,8 +414,6 @@ bool CTTYComm::OpenLogFile( int32_t dwPort , char * pDevPath)
         GetExePath helper;
         std::string strDir = helper.getExeDir();
         std::string strName = helper.getExeName();
-
-        m_log.LogFmtStr(SPLOGLV_ERROR,"===%s%s", strDir.c_str(), strName.c_str() );
         return true;
     }
     return false;

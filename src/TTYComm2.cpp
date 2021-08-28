@@ -271,18 +271,14 @@ uint32_t CTTYComm2::Write(uint8_t* lpData,
                 uint32_t ulDataSize,
                 uint32_t dwReserved /*= 0 */ )
 {
-    m_log.LogRawStr(SPLOGLV_INFO,"Write: +++");
-
     if (m_fdTTY == -1) {
         m_log.LogRawStr(SPLOGLV_WARN,"Write: m_fdTTY is invalid.");
-        m_log.LogRawStr(SPLOGLV_INFO,"Write: ---");
         return 0;
     }
 
     if(lpData == NULL || ulDataSize == 0)
 	{
 		m_log.LogRawStr(SPLOGLV_WARN,"Write: parameters are invalid.");
-		m_log.LogRawStr(SPLOGLV_INFO,"Write: ---");
 		return 0;
 	}
 
@@ -328,7 +324,6 @@ uint32_t CTTYComm2::Write(uint8_t* lpData,
 	}
 
     m_log.LogBufData(SPLOGLV_DATA,lpData,dwRealWritten,LOG_WRITE,&ulDataSize);
-    m_log.LogRawStr(SPLOGLV_INFO,"Write: ---");
     return dwRealWritten;
 }
 
@@ -392,8 +387,6 @@ bool CTTYComm2::OpenLogFile( int32_t dwPort , char * pDevPath)
         GetExePath helper;
         std::string strDir = helper.getExeDir();
         std::string strName = helper.getExeName();
-
-        m_log.LogFmtStr(SPLOGLV_ERROR,"===%s%s", strDir.c_str(), strName.c_str() );
         return true;
     }
     return false;
@@ -685,7 +678,6 @@ void CTTYComm2::_Read()
 	{
 		uRead =  read(m_fdTTY,pBuf,nRealSize);
 		bContinue = false;
-		m_log.LogFmtStr(SPLOGLV_INFO,"Read= %d,Readed= %d",nRealSize,uRead);
 		if(uRead == (uint32_t)(-1))
 		{
 		     if(errno==EINTR) 
@@ -710,13 +702,12 @@ void CTTYComm2::_Read()
 	}while(bContinue);
 
 	/*uint32_t uRead =  read(m_fdTTY,pBuf,nRealSize);
-	m_log.LogFmtStr(SPLOGLV_INFO,"Read= %d,Readed= %d",nRealSize,uRead);
 	if(uRead == (uint32_t)(-1))
 	{
 		m_log.LogFmtStr(SPLOGLV_ERROR,"Read failed, error code: %d,\"%s\"",errno,strerror(errno));
 		uRead = 0;
 	}
-*/
+	*/
 	m_log.LogBufData(SPLOGLV_DATA,pBuf,uRead,LOG_ASYNC_READ,NULL);
 
 	/* Execute callback */
