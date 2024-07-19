@@ -368,6 +368,7 @@ bool CTTYComm2::SetProperty( int32_t lFlags,
 bool CTTYComm2::SetObserver( IProtocolObserver * lpObserver )
 {
     m_pObserver = lpObserver;
+    return true;
 }
 
 bool CTTYComm2::OpenLogFile( int32_t dwPort , char * pDevPath)
@@ -750,6 +751,8 @@ void* CTTYComm2::RecvFunc()
         }
         usleep(1);
     }
+
+    return NULL;
 }
 
 bool CTTYComm2::CreateRecvThread()
